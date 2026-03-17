@@ -249,9 +249,6 @@ Paladin uses [Hydra](https://hydra.cc/) for hierarchical configuration. All conf
 ## Development
 
 ```bash
-# Run tests
-pytest -v
-
 # Run linting
 pre-commit run --all-files
 
