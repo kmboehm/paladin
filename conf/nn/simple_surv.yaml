@@ -1,0 +1,4 @@
+defaults:
+  - data: simple_surv
+  - module: cox
+  - _self_

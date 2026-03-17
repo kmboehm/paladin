@@ -1,0 +1,23 @@
+# Workshop: continuous regression with MSE loss
+core:
+  project_name: paladin-workshop-reg
+  storage_dir: ${oc.env:PROJECT_ROOT}/storage
+  version: 0.0.1
+  tags: null
+
+conventions:
+  y_key: 'y'
+
+# Allow CPU or GPU — workshop attendees may not have a GPU
+train:
+  trainer:
+    accelerator: 'auto'
+    strategy: 'auto'
+    devices: 1
+    precision: 32
+
+defaults:
+  - hydra: default
+  - nn: simple_reg
+  - train: joint
+  - _self_

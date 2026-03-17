@@ -1,0 +1,6 @@
+_target_: paladin.modules.module.AcontextualAggregator
+tile_emb_dim: ${nn.data.dataset.tile_emb_dim}
+
+defaults:
+  - _self_
+  - encoder_cfg: flash

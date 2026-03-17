@@ -1,0 +1,7 @@
+_target_: paladin.modules.config.TransformerAggregatorConfig
+encoder_embed_dim: 768
+num_layers: 2
+num_heads: 12
+feedforward_dim: 3072
+dropout: 0.1
+store_attn: False

@@ -1,0 +1,4 @@
+defaults:
+  - data: simple_clf
+  - module: jointbb
+  - _self_

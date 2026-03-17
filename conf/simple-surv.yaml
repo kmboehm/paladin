@@ -1,0 +1,47 @@
+# Workshop: survival analysis with Cox proportional hazards loss
+core:
+  project_name: paladin-workshop-surv
+  storage_dir: ${oc.env:PROJECT_ROOT}/storage
+  version: 0.0.1
+  tags: null
+
+conventions:
+  y_key: 'y'
+
+defaults:
+  - hydra: default
+  - nn: simple_surv
+  - train: cox
+  - _self_
+
+# Allow CPU or GPU — workshop attendees may not have a GPU
+# Override callbacks from cox to remove StochasticWeightAveraging
+# (SWA's deepcopy fails on non-leaf tensors in the model)
+train:
+  trainer:
+    accelerator: 'auto'
+    strategy: 'auto'
+    devices: 1
+    precision: 32
+  callbacks:
+    - _target_: lightning.pytorch.callbacks.EarlyStopping
+      patience: 5
+      verbose: False
+      monitor: ${train.monitor.metric}
+      mode: ${train.monitor.mode}
+      check_on_train_epoch_end: false
+
+    - _target_: lightning.pytorch.callbacks.ModelCheckpoint
+      save_top_k: 1
+      verbose: False
+      monitor: ${train.monitor.metric}
+      mode: ${train.monitor.mode}
+
+    - _target_: lightning.pytorch.callbacks.LearningRateMonitor
+      logging_interval: "step"
+      log_momentum: False
+
+    - _target_: lightning.pytorch.callbacks.progress.tqdm_progress.TQDMProgressBar
+      refresh_rate: 5
+
+    - _target_: paladin.pl_modules.callbacks.CoxTestMetricsCallback

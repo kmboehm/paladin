@@ -1,0 +1,4 @@
+_target_: paladin.modules.config.AttnMILAggregatorConfig
+num_hidden_layers: 0
+hidden_dim: 768
+encoder_embed_dim: 768  # for parallelism with LongNet

@@ -1,0 +1,32 @@
+_target_: paladin.data.joint_datamodule.JointDataModule
+
+accelerator: ${train.trainer.accelerator}
+
+num_workers:
+  train: 8
+  val: 8
+  test: 8
+
+batch_size:
+  train: 30
+  val: 30
+  test: 30
+
+dataset:
+  tile_emb_dim: 1536
+  tile_tensor_url_col: optimus_features_tensor_urlpath
+  _target_: paladin.utils.setup_joint_datasets.load_joint_datasets
+  histologic_emb:
+    dim: 224
+    path: ${oc.env:PALADIN_HISTOLOGIC_EMB_PATH,../data-commons/oncotree_embeddings.json}
+  max_seq_len: 20000
+  sample_df_path: ${oc.env:PALADIN_SAMPLE_DF_PATH,../data-commons/freeze/msk-tcga_df_freeze.parquet}
+  target_emb:
+    dim: 224
+    path: ${oc.env:PALADIN_TARGET_EMB_PATH,../data-commons/target_embeddings.json}
+  return_coordinates: false
+# FOR_ML: additional config for data ablation, e.g. single float within 0-1 for fraction train data to retain, goes here
+
+defaults:
+  - _self_
+  - dataset: clf_LUAD_Primary_STK11_ONCOGENIC

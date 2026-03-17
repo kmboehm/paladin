@@ -1,0 +1,4 @@
+defaults:
+  - data: simple_reg
+  - module: joint
+  - _self_

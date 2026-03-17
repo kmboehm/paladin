@@ -1,0 +1,2 @@
+_target_: paladin.modules.config.PassThroughAggregatorConfig
+encoder_embed_dim: 768

@@ -1,0 +1,34 @@
+_target_: paladin.data.joint_datamodule.JointDataModule
+
+accelerator: ${train.trainer.accelerator}
+
+num_workers:
+  train: 0
+  val: 0
+  test: 0
+
+batch_size:
+  train: 4
+  val: 4
+  test: 4
+
+dataset:
+  _target_: paladin.utils.setup_simple_dataset.setup_dataset
+  tile_emb_dim: 1536
+  tile_tensor_url_col: tile_tensor_path
+  sample_df_path: ${oc.env:PROJECT_ROOT}/workshop_data/synthetic_data.parquet
+  max_seq_len: 100
+  tasks:
+  - histologies:
+    - SYNTH
+    sites:
+    - Primary
+    target:
+    - time_to_event:event_occurred
+    target_type:
+    - time_to_event
+    task:
+    - survival
+
+defaults:
+  - _self_

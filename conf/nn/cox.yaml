@@ -1,0 +1,5 @@
+defaults:
+  - data: joint_optimus_cdsi
+  - data/dataset: surv_LUAD_Primary_OS
+  - module: cox
+  - _self_

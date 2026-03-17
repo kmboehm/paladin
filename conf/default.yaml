@@ -1,0 +1,16 @@
+# metadata specialised for each experiment
+core:
+  project_name: ${oc.select:nn.data.dataset.project_name,paladin}
+  storage_dir: ${oc.env:PROJECT_ROOT}/storage
+  version: 0.0.1
+  tags: null
+
+conventions:
+  y_key: 'y'
+
+defaults:
+  - _self_
+  - hydra: default
+  - nn: jointbb
+  - train: jointbb
+  # - _self_ # as last argument to allow the override of parameters via this main config

@@ -1,0 +1,7 @@
+# data:
+#   sampler: none
+
+defaults:
+  - data: joint_optimus_cdsi
+  - module: jointbb
+  - _self_

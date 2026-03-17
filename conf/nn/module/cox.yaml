@@ -1,0 +1,11 @@
+_target_: paladin.pl_modules.joint.JointCoxLightningModule
+y_key: target
+
+defaults:
+  - _self_
+  - model: acontextual
+  - optimizer: adamw5e5
+
+lr_scheduler:
+  _target_: torch.optim.lr_scheduler.CosineAnnealingWarmRestarts
+  T_0: 20
