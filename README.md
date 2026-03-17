@@ -39,7 +39,7 @@ uv pip install torch==2.4.1+cpu torchvision==0.19.1+cpu --index-url https://down
 # GPU (CUDA 12.1):
 # uv pip install torch==2.4.1+cu121 torchvision==0.19.1+cu121 --index-url https://download.pytorch.org/whl/cu121
 
-# Install Lightning stack from PyPI (must match the paladin mamba env)
+# Install Lightning stack from PyPI
 # setuptools<81 is required: lightning 2.3 uses pkg_resources (removed in 81+)
 uv pip install lightning==2.3.0 torchmetrics==1.4.2 numpy==1.26.4 "setuptools<81"
 
